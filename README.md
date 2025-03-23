@@ -32,3 +32,8 @@ BUNNY_CDN_URL=
 ```
 
 ```
+
+## Main Page and Login Page
+
+If you dont login or register you will automaticly redirect to login page
+After login or register you will automaticly redirect to dashboard page and you can manage all of yours tasks.
