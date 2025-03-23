@@ -29,8 +29,6 @@ const TaskList = ({ data }: TasksProps) => {
   const [selectEditTaskId, setSelectedEditTaskId] = useState<string>("");
   const [filteredTasks, setFilteredTasks] = useState<Task[]>(data);
 
-  const [tasks] = useState<Task[]>(data);
-
   const handleEditTaskModal = (taskId: string) => {
     setSelectedEditTaskId(taskId);
     setIsEditTaskModalOpen(true);
@@ -46,7 +44,7 @@ const TaskList = ({ data }: TasksProps) => {
     try {
       const res = await removeTask(taskId);
       console.log(res);
-      const newList = tasks.filter((task) => task._id !== taskId);
+      const newList = filteredTasks.filter((task) => task._id !== taskId);
 
       setFilteredTasks(newList);
     } catch (error) {
@@ -54,7 +52,7 @@ const TaskList = ({ data }: TasksProps) => {
     }
   };
 
-  const sortedTasks = [...tasks].sort((a, b) => {
+  const sortedTasks = [...filteredTasks].sort((a, b) => {
     return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
   });
 
@@ -76,7 +74,17 @@ const TaskList = ({ data }: TasksProps) => {
 
   const handleTaskAdded = (newTask: Task) => {
     console.log(newTask);
-    setFilteredTasks((prev) => [...prev, newTask]);
+    setFilteredTasks((prev) => {
+      return [...prev, newTask];
+    });
+  };
+
+  const handleTaskEditted = (edittedTask: Task) => {
+    const editedTask = [
+      ...filteredTasks.filter((task) => task._id !== edittedTask._id),
+      edittedTask
+    ];
+    setFilteredTasks(editedTask);
   };
 
   return (
@@ -90,12 +98,13 @@ const TaskList = ({ data }: TasksProps) => {
         isOpen={isEditTaskModalOpen}
         onOpenChange={setIsEditTaskModalOpen}
         taskId={selectEditTaskId}
+        edittedTask={handleTaskEditted}
       />
       <NewTaskButton newTaskAdded={handleTaskAdded} />
       <div className="w-full py-4">
         <Filter onChange={handleFilter} />
       </div>
-      {tasks.length > 0 ? (
+      {filteredTasks.length > 0 ? (
         <Table className="">
           <TableHeader className="">
             <TableRow className="hover:bg-transparent">
@@ -126,7 +135,10 @@ const TaskList = ({ data }: TasksProps) => {
                         className="rounded-full"
                         width={40}
                         height={40}
+                        priority
+                        layout="fixed"
                         alt="thumb
+                        
                     "
                         src={`https://playable-factory.b-cdn.net/${item.thumbnail}`}
                       />

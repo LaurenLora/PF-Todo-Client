@@ -15,10 +15,11 @@ const nextConfig: NextConfig = {
 
   experimental: {
     serverActions: {
-      bodySizeLimit: "10mb"
+      bodySizeLimit: "10mb",
+      allowedOrigins: ["https://pf.omer-kurt.com"]
     }
-  },
-  output: "standalone"
+  }
+  // if docker uncomment pls output: "standalone"
 };
 
 export default nextConfig;

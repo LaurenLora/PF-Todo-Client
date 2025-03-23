@@ -63,9 +63,21 @@ export default function NewTaskModal({
           console.log(fileRes);
 
           newTaskAdded(fileRes);
+          setNewTask({
+            title: "",
+            description: "",
+            priority: Priority.MEDIUM,
+            status: Status.TODO
+          });
           onOpenChange(false);
         } else {
           newTaskAdded(res);
+          setNewTask({
+            title: "",
+            description: "",
+            priority: Priority.MEDIUM,
+            status: Status.TODO
+          });
           onOpenChange(false);
         }
       }
@@ -86,6 +98,7 @@ export default function NewTaskModal({
 
         <div className="flex flex-col gap-5 ">
           <Input
+            required
             className="w-full"
             onChange={handleInputChange}
             value={newTask.title}
@@ -93,6 +106,7 @@ export default function NewTaskModal({
             name="title"
           />
           <Input
+            required
             className="w-full"
             onChange={handleInputChange}
             value={newTask.description}
@@ -144,6 +158,7 @@ export default function NewTaskModal({
             Add Thumbnail
           </Button>
           <Button
+            disabled={!newTask.title || !newTask.description}
             onClick={() => handleSubmit()}
             className="bg-orange-550 text-white hover:bg-orange-550 active:scale-95 cursor-pointer">
             Add New Task

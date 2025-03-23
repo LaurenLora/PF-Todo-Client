@@ -13,12 +13,14 @@ interface ModalProps {
   isOpen: boolean;
   onOpenChange: (open: boolean) => void;
   taskId: string;
+  edittedTask: (task: Task) => void;
 }
 
 export default function EditTaskModal({
   isOpen,
   onOpenChange,
-  taskId
+  taskId,
+  edittedTask
 }: ModalProps) {
   const [editTaskk, setEditTask] = useState<Partial<Task>>({
     title: "",
@@ -90,8 +92,10 @@ export default function EditTaskModal({
         const fileRes = await handleUpload();
         if (fileRes) {
           onOpenChange(false);
+          edittedTask(fileRes);
         } else {
           onOpenChange(false);
+          edittedTask(res);
         }
       }
     } catch (error) {
