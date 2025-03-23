@@ -35,13 +35,15 @@ export type CreateTaskType = {
 };
 
 export type Task = {
-  id: string;
+  _id: string;
   title: string;
   description: string;
   recommendations: string;
   thumbnail?: string;
-  priority?: string;
+  priority?: Priority;
   files?: string[];
-  status?: string;
+  status?: Status;
+  updatedAt: Date;
+  createdAt: Date;
   userId: string;
 };

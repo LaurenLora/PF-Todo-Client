@@ -18,6 +18,7 @@ export const AuthAPI: AxiosInstance = axios.create({
 AuthAPI.interceptors.request.use(async (conf) => {
   const session = await auth();
   if (session) {
+    console.log("burda");
     const token = session.user.accessToken;
     conf.headers.Authorization = `Bearer ${token}`;
   }

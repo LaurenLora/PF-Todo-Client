@@ -1,6 +1,5 @@
 import NextAuth, { NextAuthConfig } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
-import { loginSchema } from "@/lib/validation";
 import { API } from "@/services/axios";
 
 export const authConf: NextAuthConfig = {
@@ -11,7 +10,7 @@ export const authConf: NextAuthConfig = {
         password: {}
       },
       async authorize(credentials) {
-        const { email, password } = await loginSchema.parseAsync(credentials);
+        const { email, password } = credentials;
 
         try {
           const res = await API.post("/auth/login", {

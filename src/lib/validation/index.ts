@@ -32,18 +32,20 @@ export const createTaskSchema = object({
     .max(50, "Title must be less than 50 characters"),
 
   description: string({ required_error: "Description required" })
-    .nonempty("Description cannot be empty")
-    .max(250, "Description must be less than 250 characters"),
+    .nonempty("Description cantt be empty")
+    .max(250, "Description must 250"),
 
   priority: nativeEnum(Priority, {
-    required_error: "Priority type is required"
+    required_error: "Priority  required"
   }).optional(),
 
   status: nativeEnum(Status, {
-    required_error: "Status type is required"
+    required_error: "Status  required"
   }).optional(),
 
-  userId: string({ required_error: "User id required" }).nonempty(
-    "User id cannot be empty"
+  userId: string({ required_error: "User  required" }).nonempty(
+    "User id cant empty"
   )
 });
+
+export const updateTaskSchema = createTaskSchema.partial();

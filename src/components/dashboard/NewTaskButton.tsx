@@ -3,12 +3,20 @@
 import React, { useState } from "react";
 import { Button } from "../ui/button";
 import NewTaskModal from "../modal/NewTaskModal";
+import { Task } from "@/types";
 
-const NewTaskButton = () => {
+interface NewTaskProps {
+  newTaskAdded: (task: Task) => void;
+}
+
+const NewTaskButton: React.FC<NewTaskProps> = ({
+  newTaskAdded
+}: NewTaskProps) => {
   const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
   return (
     <>
       <NewTaskModal
+        newTaskAdded={newTaskAdded}
         isOpen={isTaskModalOpen}
         onOpenChange={setIsTaskModalOpen}
       />

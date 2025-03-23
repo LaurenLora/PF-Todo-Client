@@ -29,19 +29,27 @@ export default function TaskModal({
         {selectedTask ? (
           <div className="grid gap-4 py-4">
             <div className="grid grid-cols-4 items-center gap-4">
-              <Label className="text-right font-medium">Title:</Label>
+              <Label className="text-right font-medium text-orange-550 text-xl">
+                Title:
+              </Label>
               <span className="col-span-3">{selectedTask.title}</span>
             </div>
             <div className="grid grid-cols-4 items-center gap-4">
-              <Label className="text-right font-medium">Description:</Label>
+              <Label className="text-right font-medium text-orange-550 text-xl">
+                Description:
+              </Label>
               <span className="col-span-3">{selectedTask.description}</span>
             </div>
             <div className="grid grid-cols-4 items-center gap-4">
-              <Label className="text-right font-medium">Recommendations:</Label>
+              <Label className="text-right font-medium text-orange-550 text-xl">
+                Recommendations:
+              </Label>
               <span className="col-span-3">{selectedTask.recommendations}</span>
             </div>
             <div className="grid grid-cols-4 items-center gap-4">
-              <Label className="text-right font-medium">Status:</Label>
+              <Label className="text-right font-medium text-orange-550 text-xl">
+                Status:
+              </Label>
               <span className="col-span-3">
                 {fixStatus(selectedTask.status!)}
               </span>
@@ -49,7 +57,9 @@ export default function TaskModal({
 
             {selectedTask.priority && (
               <div className="grid grid-cols-4 items-center gap-4">
-                <Label className="text-right font-medium">Priority:</Label>
+                <Label className="text-right font-medium text-orange-550 text-xl">
+                  Priority:
+                </Label>
                 <span className="col-span-3">
                   {fixPriority(selectedTask.priority)}
                 </span>
@@ -58,7 +68,7 @@ export default function TaskModal({
 
             {selectedTask.files && (
               <div className="grid grid-cols-4 items-center gap-4">
-                <Label className="text-right font-medium">
+                <Label className="text-right font-medium text-orange-550 text-xl">
                   Attached Files:
                 </Label>
                 <div className="flex ">

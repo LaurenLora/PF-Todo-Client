@@ -7,8 +7,7 @@ import { logout } from "@/lib/actions/auth";
 const LogOutButton = () => {
   const handleSignOut = async () => {
     try {
-      const out = await logout();
-      console.log(out);
+      await logout();
     } catch (error) {
       console.log(error);
     }
