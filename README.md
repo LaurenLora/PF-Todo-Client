@@ -2,14 +2,14 @@
 
 First download by yarn
 
-````
+```
 yarn
 
 ```
 
 Run the development server:
 
-```bash
+```
 yarn dev
 
 ```
@@ -28,4 +28,7 @@ BUNNY_CDN_USERNAME=
 BUNNY_CDN_ACCESS_KEY=
 BUNNY_CDN_URL=
 ```
-````
+
+```
+
+```
